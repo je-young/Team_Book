@@ -68,7 +68,7 @@ public class BookDao extends Dao {
 			if(count ==1)return true;
 		} catch (Exception e) {System.out.println(e);}
 	    return false;
-	} //fe
+	} //fe3
 	
 	// [4] 게시물 개별 수정 
 	public boolean update(BookDto bookDto) {
@@ -84,6 +84,34 @@ public class BookDao extends Dao {
 			
 		} catch (Exception e) {System.out.println(e);}
         return false;	
-	}
+	} //fe4
+	
+	// [5] 게시물 개별 조회 findByBno
+	public BookDto findByBno(int bno) {
+		try {
+			// (1)
+			String sql = "select * from book where bno = ?";
+			// (2)
+			// String sql = inner join~~~
+			// (3) 서로 겹치는 곳에서의 공통 조회
+			//string sql = "select * from book b"
+			//		+" inner join member m on b.mno = m.mno"
+			//		+" inner join category c on b.cno = c.cno"
+			//		+ " where bno = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, bno);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				BookDto bookDto = new BookDto();
+				bookDto.setBno(rs.getInt("bno"));
+				bookDto.setBtitle(rs.getString("btitle"));
+				bookDto.setBcompany(rs.getString("bcompany"));
+				bookDto.setUdate(rs.getString("udate"));
+				bookDto.setCdate(rs.getString("cdate"));
+				return bookDto;
+			}
+		}catch (Exception e) {System.out.println(e);}
+	    return null;
+	}//fe5
 	
 }
