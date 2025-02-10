@@ -58,7 +58,7 @@ public class BookDao extends Dao {
 		return list;
 	} //fe
 	
-	// [3] 게시물 개별 삭제 컨트롤러
+	// [3] 게시물 개별 삭제 
 	public boolean delete (int bno) {
 		try {
 			String sql="delete from book where bno =? ";
@@ -68,5 +68,22 @@ public class BookDao extends Dao {
 			if(count ==1)return true;
 		} catch (Exception e) {System.out.println(e);}
 	    return false;
+	} //fe
+	
+	// [4] 게시물 개별 수정 
+	public boolean update(BookDto bookDto) {
+		try {
+			String sql = "update book set btitle=? , bwriter=? , bcompany=? where bno =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bookDto.getBtitle());
+			ps.setString(2, bookDto.getBwriter());
+			ps.setString(3, bookDto.getBcompany());
+			ps.setInt(4,bookDto.getBno());
+			int count = ps.executeUpdate();
+			if(count==1) return true;
+			
+		} catch (Exception e) {System.out.println(e);}
+        return false;	
 	}
+	
 }

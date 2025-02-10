@@ -61,5 +61,14 @@ public class BookController extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("book put ok!!!");
-	}
+		// (1)
+		ObjectMapper mapper = new ObjectMapper();
+		// (2)
+		BookDto bookDto = mapper.readValue(req.getReader(), BookDto.class);
+		// (3)
+		boolean result = BookDao.getInstance().update(bookDto);
+		// (4)
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+	} // cle4
 }
