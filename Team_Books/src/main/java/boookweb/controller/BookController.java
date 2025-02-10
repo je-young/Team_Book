@@ -43,8 +43,23 @@ public class BookController extends HttpServlet {
 		// [4] http response
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
-	} //fe
+	} //cle.2
 	
-	// [3] 
-   
+	// [3] 게시물 개별 삭제 
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("book delete ok!!!");
+		// (1) http queryString 매개변수를 가져오기 
+		int bno = Integer.parseInt(req.getParameter("bno"));
+		// (2) dao에게 삭제할 번호를 전달하고 결과 받기
+		boolean result = BookDao.getInstance().delete(bno);
+		// (3)  response
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+	}// cle 3
+    // [4] 게시물 개별 수정
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("book put ok!!!");
+	}
 }
