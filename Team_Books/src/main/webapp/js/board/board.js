@@ -1,43 +1,45 @@
-const loadBooks = () => {
-	fetch('/book', { method: 'GET' }) // 전체 도서 목록 요청
-        .then(r => r.json()) // JSON 데이터 변환
-        .then(data => {
-            console.log(data); // 받아온 데이터 콘솔에 출력
-            
-            // 테이블의 tbody 요소 선택
-            const bookList = document.getElementById('book-list');
-			if (!bookList) {
-				console.log('book-list 요소가 없습니다!')
-				return;
-			} // if end
-			
-            let html = '';
+console.log('board.js ok')
+const boardFindAll = () => {
+    // 1. 어디에
+    const tbody = document.querySelector('tbody');
+    if (!tbody) {
+        console.log('tbody 요소가 없습니다!');
+        return;
+    } // if end
 
-            // 받아온 도서 데이터를 테이블 행(<tr>) 형태로 변환
-            data.forEach(book => {
-                html += `
-                    <tr>
-                        <td>${book.bno}</td>
-                        <td><a href="view.jsp?bno=${book.bno}">${book.btitle}</a></td>
-                        <td>${book.bwriter}</td>
-                        <td>${book.bcompany}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" onclick="editBook(${book.bno})">수정</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteBook(${book.bno})">삭제</button>
-                        </td>
-                    </tr>
-                `;
+    // 2. 무엇을
+    let html = '';
+
+    // 3. fetch 옵션 설정 (GET 요청)
+    const option = { method: 'GET' };
+
+    // 4. 전체 게시글 조회 요청
+    fetch('/Team_Books/book', option)
+        .then(response => response.json()) // JSON 변환
+        .then(data => {
+            // 5. 받아온 데이터를 반복하여 테이블 행으로 변환
+            data.forEach(board => {
+                html += `<tr>
+							<td>${board.bno}</td>
+                        	<td>
+                            	<a href="view.jsp?bno=${board.bno}">
+                                	${board.btitle}
+                            	</a>
+                        	</td>
+                        	<td>${board.bwriter}</td>
+                        	<td>${board.bdate}</td>
+                        	<td>${board.bview}</td>
+                    	</tr>`;
             });
 
-            // 생성한 HTML을 테이블에 삽입
-            bookList.innerHTML = html;
+            // 6. tbody에 HTML 삽입
+            tbody.innerHTML = html;
         })
-        .catch(e => console.log('도서 목록 불러오기 실패:', e));
+        .catch(error => console.log(error));
 };
 
-loadBooks(); // 페이지가 열리면 함수 실행
-
-
+// 7. 페이지가 로드되면 자동 실행
+boardFindAll();
 
 
 

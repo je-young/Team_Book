@@ -23,7 +23,7 @@ const onWrite = () => {
 	} // option end
 
 	// 5.
-	fetch( '/Team_Books/book' , option )
+	fetch( '/book' , option )
 			.then( r => r.json() )
 			.then( data => {
 				console.log(data);

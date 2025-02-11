@@ -24,7 +24,7 @@
                     <th>관리</th> <!-- 수정 및 삭제 기능을 위한 컬럼 -->
                 </tr>
             </thead>
-            <tbody id="book-list">
+            <tbody>
                 <!-- JavaScript에서 동적으로 데이터 삽입 -->
             </tbody>
         </table>
