@@ -8,7 +8,7 @@ public class Dao {
 
 	   private String dburl = "jdbc:mysql://localhost:3306/bookweb"; // 연동할 DB 서버의 URL
 	   private String dbuser = "root"; // 연동할 DB 서버의 계정명
-	   private String dbpwd = "1234";         // 연동할 DB 서버의 비밀번호 
+	   private String dbpwd = "2965";         // 연동할 DB 서버의 비밀번호 
 
 	   public Dao() {
 	        try {

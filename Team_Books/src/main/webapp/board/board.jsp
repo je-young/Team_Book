@@ -29,14 +29,16 @@
             </tbody>
         </table>
         
-        <!-- 도서 추가 페이지로 이동하는 버튼 -->
+        <!-- 도서 등록 페이지로 이동하는 버튼 -->
         <a href="/Team_Books/board/write.jsp" class="btn btn-primary">도서 등록</a>
     </div>
     
 	<jsp:include page="/footer.jsp"></jsp:include>
 	
-	<script src="/Team_Books/js/board/board.js" type="text/javascript"></script>
-	
+	<!-- 부트스트랩 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/Team_Books/js/board/board.js"></script> <!-- 도서 목록 관련 JavaScript 파일 연결 -->
 </body>
 </html>
+
 
