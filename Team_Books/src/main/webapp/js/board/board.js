@@ -22,7 +22,7 @@ const boardFindAll = () => {
                 html += `<tr>
 							<td>${board.bno}</td>
                         	<td>
-                            	<a href="view.jsp?bno=${board.bno}">
+                            	<a href="/Team_Books/board/view.jsp?bno=${board.bno}">
                                 	${board.btitle}
                             	</a>
                         	</td>
